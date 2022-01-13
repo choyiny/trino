@@ -10,16 +10,6 @@ services:
       - ./etc/catalog:/etc/trino/catalog
       - ./etc/config.properties:/etc/trino/config.properties
       - ./etc/jvm.config:/etc/trino/jvm.config
-  postgres:
-    restart: always
-    image: postgres:12
-    expose:
-      - 5432
-    environment:
-      - POSTGRES_USER=test
-      - POSTGRES_PASSWORD=test
-    volumes:
-      - postgres-volume:/var/lib/postgresql/data
   postgres2:
     restart: always
     image: postgres:12
@@ -32,5 +22,4 @@ services:
       - postgres-volume2:/var/lib/postgresql/data
     command: -p 5433
 volumes:
-  postgres-volume:
   postgres-volume2:
