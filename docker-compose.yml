@@ -1,13 +1,15 @@
 version: '3'
 services:
-  ctakes:
-    image: prestodb:latest
+  trino:
+    image: trinodb/trino:latest
     expose:
       - 8080
     ports:
       - "8081:8080"
     volumes:
-      - ./etc:/opt/presto/etc
+      - ./etc/catalog:/etc/trino/catalog
+      - ./etc/config.properties:/etc/trino/config.properties
+      - ./etc/jvm.config:/etc/trino/jvm.config
   postgres:
     restart: always
     image: postgres:12
